@@ -1,0 +1,74 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DailyDash | Curated News</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" crossorigin="anonymous">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+
+    <!-- Custom CSS File -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  <body>
+
+    <div class="bg-animated"></div>
+
+    <nav class="navbar navbar-expand-lg fixed-top">
+      <div class="container">
+        
+        <a class="navbar-brand" href="{{ url_for('hello_world') }}">
+          <svg width="32" height="32" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect width="40" height="40" rx="12" fill="white" fill-opacity="0.1"/>
+            <path d="M12 20L18 26L28 14" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+            <path d="M30 30H10" stroke="white" stroke-width="2" stroke-linecap="round" opacity="0.5"/>
+          </svg>
+          DailyDash
+        </a>
+
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navContent" aria-controls="navContent" aria-expanded="false" aria-label="Toggle navigation" style="border: none; filter: invert(1);">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        
+        <div class="collapse navbar-collapse" id="navContent">
+          <ul class="navbar-nav ms-auto align-items-center">
+            <li class="nav-item"><a class="nav-link" href="#">About</a></li>
+            
+            
+            {% if current_user.is_authenticated %}
+                <li class="nav-item"><span class="nav-link" style="opacity: 0.6;">Hi, {{ current_user.username }}</span></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('dashboard') }}">Dashboard</a></li>
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('logout') }}">Logout</a></li>
+                
+            {% else %}
+                <li class="nav-item"><a class="nav-link" href="{{ url_for('login') }}">Login</a></li>
+                <li class="nav-item ms-lg-2">
+                  <a class="btn btn-primary-custom" href="{{ url_for('signup') }}">Sign Up</a>
+                </li>
+            {% endif %}
+            
+          </ul>
+        </div>
+      </div>
+    </nav>
+
+    <section class="hero-section">
+      <div class="container hero-content">
+        <h1 class="hero-title">Your News.<br>Your Frequency.</h1>
+        <p class="hero-subtitle">
+          Experience a smarter way to stay informed. DailyDash filters the noise to bring you the stories that actually matter to you, delivered beautifully.
+        </p>
+        <div class="d-flex gap-3 justify-content-center flex-wrap">
+          <a href="{{ url_for('signup') }}" class="btn btn-primary-custom">Get Started</a>
+          <a href="#" class="btn btn-outline-custom">View Features</a>
+        </div>
+      </div>
+    </section>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+  </body>
+</html>

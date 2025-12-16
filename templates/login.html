@@ -1,0 +1,60 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>DailyDash | Login</title>
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600&family=Poppins:wght@500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+  </head>
+  
+  <body class="signup-body">
+
+    <div class="bg-animated"></div>
+
+    <div class="container d-flex justify-content-center">
+      <div class="auth-card">
+        
+        <div class="text-center mb-4">
+          <svg width="48" height="48" viewBox="0 0 40 40" fill="none" xmlns="http://www.w3.org/2000/svg" class="mb-3">
+            <rect width="40" height="40" rx="12" fill="white" fill-opacity="0.1"/>
+            <path d="M12 20L18 26L28 14" stroke="#ff6b6b" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/>
+          </svg>
+          <h2 class="fw-bold" style="font-family: 'Poppins', sans-serif;">Welcome Back</h2>
+          <p style="color: rgba(255,255,255,0.5)">Login to your account</p>
+        </div>
+
+        <form method="POST" action="">
+          {{ form.hidden_tag() }}
+
+          <div class="mb-3">
+            <label for="username" class="form-label">Username</label>
+            {{ form.username(class="form-control") }}
+            {% for error in form.username.errors %}
+                <span style="color: #ff6b6b; font-size: 0.8rem;">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          <div class="mb-3">
+            <label for="password" class="form-label">Password</label>
+            {{ form.password(class="form-control") }}
+            {% for error in form.password.errors %}
+                <span style="color: #ff6b6b; font-size: 0.8rem;">{{ error }}</span>
+            {% endfor %}
+          </div>
+
+          {{ form.submit(class="btn btn-primary-custom btn-form") }}
+        </form>
+
+        <div class="auth-footer">
+          Don't have an account? <a href="{{ url_for('signup') }}">Sign Up</a>
+        </div>
+
+      </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+  </body>
+</html>
